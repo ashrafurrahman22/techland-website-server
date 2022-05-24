@@ -16,7 +16,9 @@ async function run(){
     try {
         await client.connect();
         const productCollection = client.db('techland').collection('products');
+        const purchaseCollection = client.db('techland').collection('purchase');
 
+        // product api
         app.get('/product', async(req, res)=>{
             const query = {};
             const cursor  = productCollection.find(query);
@@ -30,6 +32,20 @@ async function run(){
             const query = {_id: ObjectId(id)};
             const product = await productCollection.findOne(query);
             res.send(product);
+        });
+
+        // purchase API 
+        app.get('/purchase', async(req, res)=>{
+            const query = {};
+            const cursor  = purchaseCollection.find(query);
+            const purchases = await cursor.toArray();
+            res.send(purchases);
+        })
+
+        app.post('/purchase', async(req, res)=>{
+            const purchase = req.body;
+            const result = await purchaseCollection.insertOne(purchase);
+            res.send(result);
         })
 
     }
