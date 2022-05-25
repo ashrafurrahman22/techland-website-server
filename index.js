@@ -17,6 +17,7 @@ async function run(){
         await client.connect();
         const productCollection = client.db('techland').collection('products');
         const purchaseCollection = client.db('techland').collection('purchase');
+        const reviewCollection = client.db('techland').collection('review');
 
         // product api
         app.get('/product', async(req, res)=>{
@@ -46,7 +47,21 @@ async function run(){
             const purchase = req.body;
             const result = await purchaseCollection.insertOne(purchase);
             res.send(result);
+        });
+
+        // Review API
+        app.get('/review', async(req, res)=>{
+            const query = {};
+            const cursor  = reviewCollection.find(query);
+            const reviews = await cursor.toArray();
+            res.send(reviews);
         })
+
+        app.post('/review', async(req, res)=>{
+            const review = req.body;
+            const result = await reviewCollection.insertOne(review);
+            res.send(result);
+        });
 
     }
     finally {
