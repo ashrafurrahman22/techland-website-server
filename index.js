@@ -49,6 +49,22 @@ async function run(){
             res.send(result);
         });
 
+        app.get('/purchase/:id', async(req, res)=>{
+            const id = req.params.id;
+            const query = {_id: ObjectId(id)};
+            const purchase = await purchaseCollection.findOne(query);
+            res.send(purchase);
+        });
+
+
+        // Delete 
+        app.delete('/purchase/:id', async(req, res)=>{
+            const id = req.params.id;
+            const query = {_id: ObjectId(id)};
+            const result = await purchaseCollection.deleteOne(query);
+            res.send(result);
+        });
+
         // Review API
         app.get('/review', async(req, res)=>{
             const query = {};
