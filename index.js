@@ -74,7 +74,7 @@ async function run(){
             const reviews = await cursor.toArray();
             res.send(reviews);
         })
-
+        // review  Post method api
         app.post('/review', async(req, res)=>{
             const review = req.body;
             const result = await reviewCollection.insertOne(review);
