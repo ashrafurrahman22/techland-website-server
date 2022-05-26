@@ -43,6 +43,7 @@ async function run(){
             res.send(purchases);
         })
 
+        // post API
         app.post('/purchase', async(req, res)=>{
             const purchase = req.body;
             const result = await purchaseCollection.insertOne(purchase);
