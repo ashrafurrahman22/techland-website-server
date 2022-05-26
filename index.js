@@ -89,13 +89,7 @@ async function run(){
 }
 run().catch(console.dir);
 
-
-
-
-
-
-
-
+// root
 app.get('/', (req, res)=>{
     res.send('techland is running')
 });
