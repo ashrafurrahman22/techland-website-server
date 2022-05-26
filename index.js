@@ -50,6 +50,7 @@ async function run(){
             res.send(result);
         });
 
+        // catch single item
         app.get('/purchase/:id', async(req, res)=>{
             const id = req.params.id;
             const query = {_id: ObjectId(id)};
