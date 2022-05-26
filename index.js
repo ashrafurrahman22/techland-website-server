@@ -91,9 +91,10 @@ run().catch(console.dir);
 
 // root
 app.get('/', (req, res)=>{
-    res.send('techland is running')
+    res.send('techland server is running')
 });
 
+// root listen
 app.listen(port, ()=>{
     console.log('techland Server is running on port', port);
 })
